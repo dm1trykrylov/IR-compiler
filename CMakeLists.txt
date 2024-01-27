@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
 
-project("Antlr-cpp-driver")
+project("Antlr-cpp-compiler")
 
 set(HEADERS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include")
 set(GENERATED_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Generated")
@@ -53,14 +53,14 @@ include_directories(${HEADERS_DIR} ${GENERATED_DIR})
 add_subdirectory(${SOURCES_DIR} AllVisitor)
 link_libraries(AllVisitor)
 
-add_executable(driver driver.cpp ${ANTLR_ExprGrammarParser_CXX_OUTPUTS})
+add_executable(compiler compiler.cpp ${ANTLR_ExprGrammarParser_CXX_OUTPUTS})
 
 # Link required libraries
-target_link_libraries(driver antlr4_static ${SYSTEM_LIBS} ${llvm_libs})
+target_link_libraries(compiler antlr4_static ${SYSTEM_LIBS} ${llvm_libs})
 
 # Copy the input file next to the generated executable
-add_custom_command(TARGET driver POST_BUILD
+add_custom_command(TARGET compiler POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
   "${PROJECT_SOURCE_DIR}/input.txt"
-  $<TARGET_FILE_DIR:driver>)
+  $<TARGET_FILE_DIR:compiler>)
 
