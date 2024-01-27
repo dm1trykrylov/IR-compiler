@@ -32,5 +32,18 @@ $ cmake ../
 $ cd build
 $ make
 ```
-*Note:*  Default target is `driver`, it produces `driver` binary file in current (build) directory
+*Note:*  Default target is `compiler`, it produces `compiler` binary file in current (build) directory.
+
+## Sample usage
+Here are command to compile program from file `main.txt` to `build/driver.ll`
+Re-compile project (if needed):
+```bash
+$ cd build
+$ cmake ..
+$ make
+```
+Run compiler:
+```bash
+$ ./compiler ../main.txt
+```
 
